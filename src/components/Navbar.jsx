@@ -23,8 +23,8 @@ export default function Navbar() {
         <AppBar component="nav" position="static" className="topbar">
             <Toolbar className="topbar__toolbar">
                 <a className="brand" href="/Agenda" onClick={(event) => handleNavigation(event, '/Agenda')}>
-                    <span className="brand__mark" aria-hidden="true">G</span>
-                    <span>WChat</span>
+                    <span className="brand__mark" aria-hidden="true">T</span>
+                    <span>TSTChat</span>
                 </a>
                 <Box className="topbar__nav">
                     <Button

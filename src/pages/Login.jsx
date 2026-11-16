@@ -22,8 +22,8 @@ export default function Login() {
         <Box className="auth-page">
             <Box className="auth-card surface">
                 <Box className="auth-card__brand">
-                    <span className="brand__mark" aria-hidden="true">m</span>
-                    <span>Messages</span>
+                    <span className="brand__mark" aria-hidden="true">T</span>
+                    <span>TSTChat</span>
                 </Box>
                 <Typography component="h1" className="auth-card__heading">Welcome back</Typography>
                 <Typography className="auth-card__description">Log in to continue to your messages.</Typography>
