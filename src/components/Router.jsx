@@ -2,6 +2,7 @@ import { EVENTS } from '../utils/consts.js'
 import { useState, useEffect, Children } from 'react'
 import { match } from 'path-to-regexp'
 import { getCurrentPath } from '../utils/getCurrentPath.js'
+import { Route } from './Route.jsx'
 
 export function Router ({ children, routes = [], defaultComponent: DefaultComponent = () => <h1>404</h1> }) {
   const [currentPath, setCurrentPath] = useState(getCurrentPath())
@@ -24,9 +25,7 @@ export function Router ({ children, routes = [], defaultComponent: DefaultCompon
 
   // add routes from children <Route /> components
   const routesFromChildren = Children.map(children, ({ props, type }) => {
-    const { name } = type
-    const isRoute = name === 'Route'
-    return isRoute ? props : null
+    return type === Route ? props : null
   })
 
   const routesToUse = routes.concat(routesFromChildren).filter(Boolean)
