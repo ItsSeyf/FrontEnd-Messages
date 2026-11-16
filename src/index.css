@@ -1,0 +1,724 @@
+:root {
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: #0f172a;
+  background: #f8fafc;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  --color-background: #f8fafc;
+  --color-surface: #ffffff;
+  --color-primary: #2563eb;
+  --color-border: #e2e8f0;
+  --color-text: #0f172a;
+  --color-muted: #64748b;
+  --color-danger: #dc2626;
+  --shadow-card: 0 1px 3px rgb(15 23 42 / 5%), 0 8px 24px rgb(15 23 42 / 3%);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  min-width: 320px;
+  min-height: 100%;
+  margin: 0;
+}
+
+body {
+  min-height: 100vh;
+  background: var(--color-background);
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+}
+
+a {
+  color: var(--color-primary);
+}
+
+.app-shell {
+  min-height: 100vh;
+}
+
+.topbar.MuiAppBar-root {
+  color: var(--color-text);
+  background: rgb(255 255 255 / 92%);
+  border-bottom: 1px solid var(--color-border);
+  box-shadow: none;
+  backdrop-filter: blur(12px);
+}
+
+.topbar__toolbar.MuiToolbar-root {
+  width: min(1200px, 100%);
+  min-height: 64px;
+  margin: 0 auto;
+  padding: 0 28px;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-right: 36px;
+  color: var(--color-text);
+  font-size: 15px;
+  font-weight: 750;
+  letter-spacing: -0.035em;
+  text-decoration: none;
+}
+
+.brand__mark {
+  display: grid;
+  width: 30px;
+  height: 30px;
+  place-items: center;
+  border-radius: 10px;
+  color: #fff;
+  background: var(--color-primary);
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.topbar__nav {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  flex: 1;
+}
+
+.topbar__link.MuiButton-root,
+.topbar__logout.MuiButton-root {
+  min-width: 0;
+  padding: 8px 12px;
+  border-radius: 8px;
+  color: var(--color-muted);
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: none;
+}
+
+.topbar__link.MuiButton-root:hover,
+.topbar__logout.MuiButton-root:hover {
+  color: var(--color-text);
+  background: #f1f5f9;
+}
+
+.topbar__link[aria-current="page"].MuiButton-root {
+  color: var(--color-primary);
+  background: #eff6ff;
+}
+
+.topbar__logout.MuiButton-root {
+  margin-left: auto;
+  color: var(--color-muted);
+}
+
+.page-container.MuiContainer-root {
+  width: min(1120px, 100%);
+  padding: 36px 28px 48px;
+}
+
+.page-heading {
+  margin-bottom: 22px !important;
+  color: var(--color-text);
+  font-size: clamp(22px, 3vw, 28px) !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.04em !important;
+  line-height: 1.2 !important;
+}
+
+.page-subheading {
+  margin-top: 6px !important;
+  color: var(--color-muted);
+  font-size: 14px !important;
+  line-height: 1.55 !important;
+}
+
+.surface {
+  border: 1px solid var(--color-border);
+  border-radius: 14px;
+  background: var(--color-surface);
+  box-shadow: var(--shadow-card);
+}
+
+.surface__header {
+  padding: 20px 22px 16px;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.surface__body {
+  padding: 20px 22px;
+}
+
+.section-title {
+  color: var(--color-text);
+  font-size: 15px !important;
+  font-weight: 650 !important;
+  letter-spacing: -0.02em !important;
+}
+
+.section-caption {
+  margin-top: 3px !important;
+  color: var(--color-muted);
+  font-size: 12px !important;
+}
+
+.form-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 17px;
+}
+
+.form-stack .MuiFormLabel-root {
+  margin-bottom: 7px;
+  color: #334155;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.form-stack .MuiOutlinedInput-root {
+  border-radius: 9px;
+  background: #fff;
+}
+
+.form-stack .MuiOutlinedInput-notchedOutline {
+  border-color: var(--color-border);
+}
+
+.form-stack .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline {
+  border-color: #94a3b8;
+}
+
+.form-stack .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+  border-width: 1px;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgb(37 99 235 / 12%);
+}
+
+.form-stack .MuiButton-root,
+.primary-button.MuiButton-root {
+  min-height: 42px;
+  border-radius: 9px;
+  background: var(--color-primary);
+  box-shadow: none;
+  font-size: 13px;
+  font-weight: 650;
+  text-transform: none;
+}
+
+.form-stack .MuiButton-root:hover,
+.primary-button.MuiButton-root:hover {
+  background: #1d4ed8;
+  box-shadow: none;
+}
+
+.form-stack .MuiButton-root.Mui-disabled,
+.primary-button.MuiButton-root.Mui-disabled {
+  color: #94a3b8;
+  background: #e2e8f0;
+}
+
+.danger-button.MuiButton-root {
+  color: var(--color-danger);
+}
+
+.danger-button.MuiButton-root:hover {
+  background: #fef2f2;
+}
+
+.contact-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.contact-row {
+  display: flex;
+  min-height: 74px;
+  align-items: center;
+  gap: 13px;
+  padding: 12px 20px;
+  transition: background-color 140ms ease;
+}
+
+.contact-row + .contact-row {
+  border-top: 1px solid #f1f5f9;
+}
+
+.contact-row:hover {
+  background: #f8fafc;
+}
+
+.contact-row__details {
+  min-width: 0;
+  flex: 1;
+}
+
+.contact-row__name {
+  overflow: hidden;
+  color: var(--color-text);
+  font-size: 14px !important;
+  font-weight: 620 !important;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.contact-row__username {
+  margin-top: 3px !important;
+  overflow: hidden;
+  color: var(--color-muted);
+  font-size: 12px !important;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.contact-row__actions {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.contact-row__actions .MuiButton-root {
+  min-width: 0;
+  padding: 7px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: none;
+}
+
+.contact-row__actions .MuiButton-outlined {
+  border-color: var(--color-border);
+}
+
+.contact-avatar.MuiAvatar-root {
+  width: 40px;
+  height: 40px;
+  color: #1d4ed8;
+  background: #dbeafe;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.empty-state {
+  display: flex;
+  min-height: 190px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 28px;
+  text-align: center;
+}
+
+.empty-state__icon {
+  display: grid;
+  width: 44px;
+  height: 44px;
+  margin-bottom: 13px;
+  place-items: center;
+  border: 1px solid #dbeafe;
+  border-radius: 14px;
+  color: var(--color-primary);
+  background: #eff6ff;
+  font-size: 20px;
+}
+
+.empty-state__title {
+  color: var(--color-text);
+  font-size: 14px !important;
+  font-weight: 650 !important;
+}
+
+.empty-state__description {
+  max-width: 320px;
+  margin-top: 5px !important;
+  color: var(--color-muted);
+  font-size: 12px !important;
+  line-height: 1.5 !important;
+}
+
+.conversation-page.MuiContainer-root {
+  display: flex;
+  width: min(1020px, 100%);
+  height: calc(100dvh - 64px);
+  min-height: 450px;
+  flex-direction: column;
+  padding: 18px 28px 24px;
+}
+
+.conversation.surface {
+  display: flex;
+  min-height: 0;
+  flex: 1;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.conversation__header {
+  display: flex;
+  min-height: 76px;
+  align-items: center;
+  gap: 13px;
+  padding: 14px 22px;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.conversation__title {
+  color: var(--color-text);
+  font-size: 15px !important;
+  font-weight: 650 !important;
+}
+
+.conversation__subtitle {
+  margin-top: 3px !important;
+  color: var(--color-muted);
+  font-size: 12px !important;
+}
+
+.conversation__messages {
+  display: flex;
+  min-height: 0;
+  flex: 1;
+  flex-direction: column;
+  gap: 13px;
+  overflow-y: auto;
+  padding: 24px clamp(16px, 5vw, 58px);
+  background-color: #fbfdff;
+  background-image: radial-gradient(#e2e8f0 0.6px, transparent 0.6px);
+  background-size: 16px 16px;
+}
+
+.message-row {
+  display: flex;
+  width: 100%;
+  justify-content: flex-start;
+}
+
+.message-row--own {
+  justify-content: flex-end;
+}
+
+.message-bubble {
+  max-width: min(76%, 620px);
+  padding: 10px 13px 8px;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px 14px 14px 4px;
+  background: #f1f5f9;
+  box-shadow: 0 1px 1px rgb(15 23 42 / 3%);
+}
+
+.message-row--own .message-bubble {
+  border-color: #bfdbfe;
+  border-radius: 14px 14px 4px 14px;
+  background: #dbeafe;
+}
+
+.message-bubble__text {
+  color: #1e293b;
+  font-size: 14px !important;
+  line-height: 1.55 !important;
+  overflow-wrap: anywhere;
+}
+
+.message-bubble__meta {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 5px;
+  color: #64748b;
+  font-size: 10px !important;
+}
+
+.message-bubble__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 2px;
+  margin: 5px -5px -4px 0;
+}
+
+.message-bubble__actions .MuiButton-root {
+  min-width: 0;
+  padding: 3px 6px;
+  color: #475569;
+  font-size: 11px;
+  text-transform: none;
+}
+
+.message-edit.MuiTextField-root {
+  margin-top: 4px;
+}
+
+.message-edit .MuiOutlinedInput-root {
+  border-radius: 8px;
+  background: #fff;
+  font-size: 14px;
+}
+
+.conversation__composer {
+  padding: 14px 20px;
+  border-top: 1px solid #f1f5f9;
+  background: #fff;
+}
+
+.conversation__composer-inner {
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+}
+
+.conversation__composer .MuiOutlinedInput-root {
+  border-radius: 12px;
+  background: #f8fafc;
+}
+
+.conversation__composer .MuiOutlinedInput-notchedOutline {
+  border-color: var(--color-border);
+}
+
+.conversation__composer .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+  border-color: var(--color-primary);
+}
+
+.conversation__send.MuiButton-root {
+  min-width: 78px;
+  height: 42px;
+  border-radius: 10px;
+  background: var(--color-primary);
+  font-size: 13px;
+  font-weight: 650;
+  text-transform: none;
+}
+
+.auth-page {
+  display: grid;
+  min-height: 100vh;
+  place-items: center;
+  padding: 32px 18px;
+  background:
+    radial-gradient(ellipse at 50% 0%, rgb(219 234 254 / 55%), transparent 48%),
+    var(--color-background);
+}
+
+.auth-card {
+  width: min(100%, 430px);
+  padding: 34px;
+}
+
+.auth-card__brand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  margin-bottom: 26px;
+  color: var(--color-text);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+}
+
+.auth-card__heading {
+  margin-bottom: 7px !important;
+  color: var(--color-text);
+  font-size: 25px !important;
+  font-weight: 720 !important;
+  letter-spacing: -0.04em !important;
+  text-align: center;
+}
+
+.auth-card__description {
+  margin-bottom: 25px !important;
+  color: var(--color-muted);
+  font-size: 13px !important;
+  text-align: center;
+}
+
+.auth-card__footer {
+  margin-top: 21px;
+  padding-top: 18px;
+  border-top: 1px solid #f1f5f9;
+  color: var(--color-muted);
+  font-size: 13px;
+  text-align: center;
+}
+
+.auth-card__footer a {
+  margin-left: 4px;
+  font-weight: 650;
+  text-decoration: none;
+}
+
+.auth-card__footer a:hover {
+  text-decoration: underline;
+}
+
+.not-found {
+  display: grid;
+  min-height: 100vh;
+  place-items: center;
+  padding: 24px;
+  text-align: center;
+}
+
+.not-found__code {
+  color: var(--color-primary);
+  font-size: clamp(64px, 15vw, 100px) !important;
+  font-weight: 750 !important;
+  letter-spacing: -0.08em !important;
+  line-height: 1 !important;
+}
+
+.not-found__link {
+  display: inline-block;
+  margin-top: 18px;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.not-found__link:hover {
+  text-decoration: underline;
+}
+
+.loading-state {
+  display: flex;
+  min-height: 140px;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  color: var(--color-muted);
+  font-size: 13px;
+}
+
+.loading-state .MuiCircularProgress-root {
+  color: var(--color-primary);
+}
+
+.MuiDialog-paper {
+  border: 1px solid var(--color-border);
+  border-radius: 14px !important;
+  box-shadow: 0 20px 60px rgb(15 23 42 / 15%) !important;
+}
+
+.MuiAlert-root {
+  border-radius: 10px !important;
+}
+
+@media (max-width: 700px) {
+  .topbar__toolbar.MuiToolbar-root {
+    min-height: 58px;
+    padding: 0 14px;
+  }
+
+  .brand {
+    margin-right: 10px;
+  }
+
+  .topbar__link.MuiButton-root,
+  .topbar__logout.MuiButton-root {
+    padding: 7px 8px;
+    font-size: 12px;
+  }
+
+  .page-container.MuiContainer-root {
+    padding: 25px 16px 36px;
+  }
+
+  .agenda-layout {
+    grid-template-columns: 1fr !important;
+  }
+
+  .conversation-page.MuiContainer-root {
+    height: calc(100dvh - 58px);
+    min-height: 380px;
+    padding: 10px 10px 14px;
+  }
+
+  .conversation__header {
+    min-height: 68px;
+    padding: 11px 15px;
+  }
+
+  .conversation__messages {
+    gap: 10px;
+    padding: 18px 12px;
+  }
+
+  .message-bubble {
+    max-width: 88%;
+  }
+
+  .conversation__composer {
+    padding: 10px;
+  }
+
+  .conversation__send.MuiButton-root {
+    min-width: 66px;
+  }
+
+  .contact-row {
+    gap: 10px;
+    padding: 11px 14px;
+  }
+
+  .contact-row__actions .MuiButton-root {
+    padding: 6px 8px;
+  }
+}
+
+@media (max-width: 420px) {
+  .topbar__toolbar.MuiToolbar-root {
+    padding: 0 9px;
+  }
+
+  .brand {
+    gap: 7px;
+    margin-right: 2px;
+    font-size: 13px;
+  }
+
+  .brand__mark {
+    width: 27px;
+    height: 27px;
+  }
+
+  .topbar__nav {
+    gap: 0;
+  }
+
+  .topbar__link.MuiButton-root,
+  .topbar__logout.MuiButton-root {
+    padding: 6px;
+    font-size: 11px;
+  }
+
+  .contact-row {
+    flex-wrap: wrap;
+  }
+
+  .contact-row__actions {
+    width: 100%;
+    justify-content: flex-end;
+    padding-left: 50px;
+  }
+
+  .auth-card {
+    padding: 26px 21px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
