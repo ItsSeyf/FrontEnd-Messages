@@ -88,7 +88,7 @@ export default function Home({ routeParams }) {
                                                 />
                                             ) : (
                                                 <Typography className="message-bubble__text" sx={{ whiteSpace: 'pre-wrap' }}>
-                                                    {!messageText}
+                                                    {messageText}
                                                 </Typography>
                                             )}
                                             <Box className="message-bubble__meta">
