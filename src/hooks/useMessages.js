@@ -59,10 +59,11 @@ export function useMessages({receiver}) {
             })
         });
         socket.on('message:deleted', (id) => {
+            console.log(id)
             console.log('New message', id)
             dispatch({
                 type: 'DELETE',
-                payload: {id}
+                payload: id
             })
         });
         socket.connect();
