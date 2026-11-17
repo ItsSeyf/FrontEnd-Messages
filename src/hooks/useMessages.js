@@ -129,7 +129,6 @@ export function useMessages({receiver}) {
     const deletemessage = async (data) => {
         setCargando(true)
         const {id}= data;
-        console.log(data)
         const result = await deleteMessage(data)
         if (result === 500) {
             setError(true)

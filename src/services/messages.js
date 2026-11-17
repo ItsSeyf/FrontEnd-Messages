@@ -228,7 +228,7 @@ export const editMessage = async (data)=>{
     }
 }
 
-export const deleteMessage = async (id)=>{
+export const deleteMessage = async (data)=>{
     try{
         const response = await fetch(`${url}/messages/`,{
             method: 'DELETE',
@@ -236,7 +236,7 @@ export const deleteMessage = async (id)=>{
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ id })
+            body: JSON.stringify(data)
         })
         const result = await response.json();
         return response.status === 500 ? 500 : result;
