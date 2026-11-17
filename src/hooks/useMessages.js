@@ -1,13 +1,18 @@
 import { socket } from '../services/messages.js'
-import { getMessages, sendMessage, Logout, editMessage, deleteMessage } from '../services/messages.js'
-import { useState, useEffect, useReducer } from 'react';
+import { getMessages, sendMessage, editMessage, deleteMessage } from '../services/messages.js'
+import { useState, useEffect, useReducer, useRef } from 'react';
 import { messagesReducer, messagesInitialState } from '../reducers/messages.js';
 
-export function useMessages({receiver}) {
+export function useMessages({ receiver }) {
     const [state, dispatch] = useReducer(messagesReducer, messagesInitialState);
     const [cargando, setCargando] = useState(false);
     const [error, setError] = useState(false);
     const [mensajeError, setMensajeError] = useState('');
+    const receiverRef = useRef(receiver);
+    receiverRef.current = receiver;
+    const messagesRef = useRef(state);
+    messagesRef.current = state;
+
     useEffect(() => {
         (async () => {
             setCargando(true);
@@ -44,28 +49,48 @@ export function useMessages({receiver}) {
         socket.on('connect_error', (err) => {
             console.error('Socket error:', err);
         });
-        socket.on('message', (mensaje) => {
+        const handleMessage = (mensaje) => {
+            if (!mensaje || mensaje.sender !== receiverRef.current) return;
             dispatch({
                 type: 'ADD',
                 payload: mensaje
             })
-        });
-        socket.on('message:edited', (mensaje) => {
+        };
+        const handleMessageEdited = (mensaje) => {
+            if (!mensaje || mensaje.id == null) return;
+            const existingMessage = messagesRef.current.find(
+                (message) => message.id === mensaje.id
+            );
+            if (!existingMessage) return;
+
             dispatch({
                 type: 'EDIT',
                 payload: mensaje
             })
-        });
-        socket.on('message:deleted', (id) => {
+        };
+        const handleMessageDeleted = (event) => {
+            const id = event && typeof event === 'object' ? event.id : event;
+            if (id == null) return;
+            const existingMessage = messagesRef.current.find(
+                (message) => message.id === id
+            );
+            if (!existingMessage) return;
+
             dispatch({
                 type: 'DELETE',
-                payload: id
+                payload: { id: existingMessage.id }
             })
-        });
+        };
+
+        socket.on('message', handleMessage);
+        socket.on('message:edited', handleMessageEdited);
+        socket.on('message:deleted', handleMessageDeleted);
         socket.connect();
 
         return () => {
-            socket.off('message')
+            socket.off('message', handleMessage)
+            socket.off('message:edited', handleMessageEdited)
+            socket.off('message:deleted', handleMessageDeleted)
             socket.off('connect');
             socket.off('connect_error');
             socket.disconnect();
@@ -110,11 +135,11 @@ export function useMessages({receiver}) {
     const editmessage = async (data) => {
         setCargando(true);
         const result = await editMessage(data)
-        const {id, messages} = data;
+        const { id, messages } = data;
         if (result) {
             dispatch({
                 type: 'EDIT',
-                payload: {id, messages}
+                payload: { id, messages }
             })
             return;
         }
@@ -125,7 +150,7 @@ export function useMessages({receiver}) {
     }
     const deletemessage = async (data) => {
         setCargando(true)
-        const {id}= data;
+        const { id } = data;
         const result = await deleteMessage(data)
         if (result === 500) {
             setError(true)
