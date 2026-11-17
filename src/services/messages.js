@@ -1,5 +1,5 @@
 import { io } from 'socket.io-client';
-const url = 'http://192.168.137.126:1234';
+const url = 'https://api-messages-loex.onrender.com';
 
 export const registerUser = async (datos) => {
     try {
