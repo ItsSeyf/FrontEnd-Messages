@@ -16,7 +16,7 @@ import {
 import { Link } from '../components/Link.jsx';
 
 export default function Register() {
-    const { error, closeAlert, errormessage, cargando, validar, handleSubmit } = useRegister();
+    const { error, closeAlert, errormessage, validar, handleSubmit } = useRegister();
 
     return (
         <Box className="auth-page">
@@ -78,8 +78,8 @@ export default function Register() {
                             size="small"
                         />
                     </FormControl>
-                    <Button type="submit" variant="contained" className="primary-button" onClick={validar} fullWidth disabled={cargando}>
-                        {cargando ? 'Creating account…' : 'Create account'}
+                    <Button type="submit" variant="contained" className="primary-button" onClick={validar} fullWidth disabled="true">
+                        Disabled on test enviroment
                     </Button>
                 </Box>
                 <Box className="auth-card__footer">
