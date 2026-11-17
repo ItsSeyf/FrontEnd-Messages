@@ -1,5 +1,6 @@
 import { io } from 'socket.io-client';
-const url = 'https://api-messages-loex.onrender.com';
+const url = '/api';
+const socketURL= 'https://api-messages-loex.onrender.com'
 
 export const registerUser = async (datos) => {
     try {
@@ -56,7 +57,7 @@ export const getMessages = async (data) => {
     }
 }
 
-export const socket = io(url, {
+export const socket = io(socketURL, {
     autoConnect: false,
     withCredentials: true,
     reconnection: true,
