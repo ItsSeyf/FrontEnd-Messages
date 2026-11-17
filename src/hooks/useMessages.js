@@ -50,7 +50,6 @@ export function useMessages({ receiver }) {
             console.error('Socket error:', err);
         });
         const handleMessage = (mensaje) => {
-            console.log(mensaje)
             if (!mensaje || mensaje.sender !== receiverRef.current) return;
             dispatch({
                 type: 'ADD',
