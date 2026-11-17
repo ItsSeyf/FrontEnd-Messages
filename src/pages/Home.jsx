@@ -110,7 +110,7 @@ export default function Home({ routeParams }) {
                                                             </Button>
                                                             <Button
                                                                 onClick={async () => {
-                                                                    await editmessage({ id: mensaje.id, messages: editedMessage });
+                                                                    await editmessage({ id: mensaje.id, messages: editedMessage, receiver: routeParams.receiver });
                                                                     setEditingMessageId(null);
                                                                     setEditedMessage('');
                                                                 }}
@@ -132,7 +132,7 @@ export default function Home({ routeParams }) {
                                                             </Button>
                                                             <Button
                                                                 className="danger-button"
-                                                                onClick={() => deletemessage(mensaje.id)}
+                                                                onClick={() => deletemessage({id: mensaje.id, receiver: routeParams.receiver})}
                                                                 disabled={cargando}
                                                             >
                                                                 Delete

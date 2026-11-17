@@ -51,6 +51,20 @@ export function useMessages({receiver}) {
                 payload: mensaje
             })
         });
+        socket.on('message:edited', (mensaje) => {
+            console.log('New message', mensaje)
+            dispatch({
+                type: 'EDIT',
+                payload: mensaje
+            })
+        });
+        socket.on('message', (id) => {
+            console.log('New message', id)
+            dispatch({
+                type: 'DELETE',
+                payload: {id}
+            })
+        });
         socket.connect();
 
         return () => {
@@ -99,10 +113,11 @@ export function useMessages({receiver}) {
     const editmessage = async (data) => {
         setCargando(true);
         const result = await editMessage(data)
+        const {id, messages} = data;
         if (result) {
             dispatch({
                 type: 'EDIT',
-                payload: data
+                payload: {id, messages}
             })
             return;
         }
@@ -111,9 +126,10 @@ export function useMessages({receiver}) {
         setMensajeError('Error editing your message. Try again later');
         return;
     }
-    const deletemessage = async (id) => {
+    const deletemessage = async (data) => {
         setCargando(true)
-        const result = await deleteMessage(id)
+        const {id}= data;
+        const result = await deleteMessage(data)
         if (result === 500) {
             setError(true)
             setMensajeError('Error editing your message. Try again later')
