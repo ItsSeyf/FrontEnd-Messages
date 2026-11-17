@@ -1,6 +1,5 @@
 import { io } from 'socket.io-client';
-const url = '/api';
-const socketURL= 'https://api-messages-loex.onrender.com'
+const url = 'https://api.sofisticcode.com';
 
 export const registerUser = async (datos) => {
     try {
@@ -57,7 +56,7 @@ export const getMessages = async (data) => {
     }
 }
 
-export const socket = io(socketURL, {
+export const socket = io(url, {
     autoConnect: false,
     withCredentials: true,
     reconnection: true,
