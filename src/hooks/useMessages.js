@@ -45,22 +45,18 @@ export function useMessages({receiver}) {
             console.error('Socket error:', err);
         });
         socket.on('message', (mensaje) => {
-            console.log('New message', mensaje)
             dispatch({
                 type: 'ADD',
                 payload: mensaje
             })
         });
         socket.on('message:edited', (mensaje) => {
-            console.log('New message', mensaje)
             dispatch({
                 type: 'EDIT',
                 payload: mensaje
             })
         });
         socket.on('message:deleted', (id) => {
-            console.log(id)
-            console.log('New message', id)
             dispatch({
                 type: 'DELETE',
                 payload: id
@@ -130,7 +126,6 @@ export function useMessages({receiver}) {
     const deletemessage = async (data) => {
         setCargando(true)
         const {id}= data;
-        console.log({id})
         const result = await deleteMessage(data)
         if (result === 500) {
             setError(true)
