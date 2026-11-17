@@ -88,14 +88,14 @@ export default function Home({ routeParams }) {
                                                 />
                                             ) : (
                                                 <Typography className="message-bubble__text" sx={{ whiteSpace: 'pre-wrap' }}>
-                                                    {messageText}
+                                                    {!messageText ? 'Message Deleted' : messageText}
                                                 </Typography>
                                             )}
                                             <Box className="message-bubble__meta">
                                                 <span>{formatMessageTimestamp(mensaje.created_at)}</span>
                                             </Box>
 
-                                            {isOwnMessage && (
+                                            {isOwnMessage && mensaje.messages !== null && mensaje.messages.includes("Edited") !== true(
                                                 <Box className="message-bubble__actions">
                                                     {isEditing ? (
                                                         <>
