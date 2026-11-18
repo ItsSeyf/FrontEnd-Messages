@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { getAgenda, addAgenda, blockUser } from '../services/messages.js'
+import { socket } from '../services/messages.js'
 
 export function useAgenda() {
     const [agenda, setAgenda] = useState([]);
@@ -27,6 +28,34 @@ export function useAgenda() {
             setAgenda(result);
             setCargando(false);
         })()
+        console.log('Coneccting Socket...')
+
+        socket.on('connect', () => {
+            console.log('Socket connected');
+        });
+
+        socket.on('connect_error', (err) => {
+            console.error('Socket error:', err);
+        });
+        socket.on('agenda', (person)=>{
+            setCargando(true);
+            setAgenda(...agenda, person)
+            setCargando(false);
+        });
+        socket.on('agenda:deleted', (person)=>{
+            setCargando(true);
+            setAgenda(agenda.filter(user => user.username !== person.username))
+            setCargando(false);
+        });
+        socket.connect();
+
+        return () => {
+            socket.off('agenda')
+            socket.off('agenda:deleted')
+            socket.off('connect');
+            socket.off('connect_error');
+            socket.disconnect();
+        }
     }, [])
     const closeAlert = () => {
         setError(false);
@@ -56,7 +85,7 @@ export function useAgenda() {
             return;
         }
         const newagenda = await getAgenda();
-        setAgenda(newagenda);
+        setAgenda(...agenda, newagenda);
         setCargando(false);
         return;
     }
