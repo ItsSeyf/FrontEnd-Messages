@@ -27,6 +27,7 @@ export function useAgenda() {
             }
             setAgenda(result);
             setCargando(false);
+            console.log(agenda)
         })()
         console.log('Coneccting Socket...')
 
@@ -39,12 +40,12 @@ export function useAgenda() {
         });
         socket.on('agenda', (person)=>{
             setCargando(true);
-            setAgenda(...agenda, person)
+            setAgenda((prevagenda)=> [...prevagenda, person])
             setCargando(false);
         });
         socket.on('agenda:deleted', (person)=>{
             setCargando(true);
-            setAgenda(agenda.filter(user => user.username !== person.username))
+            setAgenda((prevagenda) => prevagenda.filter(user => user.username !== person))
             setCargando(false);
         });
         socket.connect();
@@ -84,8 +85,7 @@ export function useAgenda() {
             window.location.href = '/Login'
             return;
         }
-        const newagenda = await getAgenda();
-        setAgenda(...agenda, newagenda);
+        setAgenda((prevagenda)=> [...prevagenda, result]);
         setCargando(false);
         return;
     }

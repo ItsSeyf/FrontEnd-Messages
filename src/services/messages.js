@@ -1,5 +1,5 @@
 import { io } from 'socket.io-client';
-const url = 'https://api.sofisticcode.com';
+const url = 'http://192.168.137.126:1234';
 
 export const registerUser = async (datos) => {
     try {
@@ -109,6 +109,7 @@ export const getAgenda = async ()=>{
         }else if(response.status === 401){
             return 401
         }
+        console.log(result)
         return result;
     }catch(e){
         console.error(e);
